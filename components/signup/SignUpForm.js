@@ -5,9 +5,9 @@ import { RiUserSmileLine } from "react-icons/ri";
 import { FiLock } from "react-icons/fi";
 import { RiEyeOffLine } from "react-icons/ri";
 import { TbGenderMale } from "react-icons/tb";
+import LoginErrorMessage from "../utils/LoginErrorMessage";
 
 function SignUpForm({ errors, touched, isValid, dirty }) {
-  console.log(errors);
   return (
     <Form>
       <div className="items-center">
@@ -23,11 +23,8 @@ function SignUpForm({ errors, touched, isValid, dirty }) {
             placeholder="Your Email"
           />
         </div>
-        {touched.email && errors.email && (
-          <p className="text-red-500 font-semibold text-sm mt-1 text-left">
-            {errors.email}
-          </p>
-        )}
+
+        <LoginErrorMessage errorVal={touched.email} errorMsg={errors.email} />
 
         {/* Name */}
         <div className="py-2.5 border border-lognScrnBrderColorLight dark:border-lognScrnBrderColor rounded-md w-full box-border  align-center text-md mt-5">
@@ -39,11 +36,7 @@ function SignUpForm({ errors, touched, isValid, dirty }) {
             placeholder="Your Name"
           />
         </div>
-        {touched.name && errors.name && (
-          <p className="text-red-500 font-semibold text-sm mt-1 text-left">
-            {errors.name}
-          </p>
-        )}
+        <LoginErrorMessage errorVal={touched.name} errorMsg={errors.name} />
         {/* Password */}
         <div className="py-2.5 border border-lognScrnBrderColorLight dark:border-lognScrnBrderColor rounded-md w-full box-border  align-center text-md mt-5">
           <FiLock className=" w-1/12 inline-block " />
@@ -55,11 +48,10 @@ function SignUpForm({ errors, touched, isValid, dirty }) {
           />
           <RiEyeOffLine className="w-1/12 inline-block" />
         </div>
-        {touched.password && errors.password && (
-          <p className="text-red-500 font-semibold text-sm mt-1 text-left">
-            {errors.password}
-          </p>
-        )}
+        <LoginErrorMessage
+          errorVal={touched.password}
+          errorMsg={errors.password}
+        />
         {/* Date and Gender */}
         <div className="flex  justify-between space-x-4 py-2.5  rounded-md box-border  align-center text-md mt-5">
           {/* Date Picker */}
@@ -69,11 +61,11 @@ function SignUpForm({ errors, touched, isValid, dirty }) {
               name="dob"
               className=" bg-white dark:bg-bgLoginLayoutColor align-center  text-sm h-[100%] focus:outline-none"
             />
-            {touched.dob && errors.dob && (
-              <p className="block text-red-500 font-semibold text-sm mt-1 text-left">
-                {errors.dob}
-              </p>
-            )}
+            <LoginErrorMessage
+              errorVal={touched.dob}
+              errorMsg={errors.dob}
+              addtnClsses="block"
+            />
           </div>
 
           {/* Gender */}
@@ -93,11 +85,15 @@ function SignUpForm({ errors, touched, isValid, dirty }) {
               className="inline-block align-top mt-[0.5rem]  focus:outline-none"
             />
             <label className="inline-block text-sm ">Female</label>
-            {touched.gender && errors.gender && (
+            <LoginErrorMessage
+              errorVal={touched.gender}
+              errorMsg={errors.gender}
+            />
+            {/*touched.gender && errors.gender && (
               <p className=" text-red-500 font-semibold text-sm mt-4 text-left">
                 {errors.gender}
               </p>
-            )}
+            ) */}
           </div>
         </div>
 
