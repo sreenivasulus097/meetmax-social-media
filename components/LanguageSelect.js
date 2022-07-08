@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const languageMap = {
   en: { label: "English", dir: "ltr", active: true },
@@ -9,11 +9,12 @@ const languageMap = {
 
 const LanguageSelect = () => {
   const [langSelected, setLangSelected] = useState("en");
-  useEffect(() => {
+  /*useEffect(() => {
     setLangSelected(localStorage.getItem("i18nextLng") || "en");
-  }, []);
+  }, []);*/
 
   const { t, i18n } = useTranslation();
+  console.log("i18n", i18n);
 
   const handleLanguageChange = (e) => {
     i18n.changeLanguage(e.target.value);
