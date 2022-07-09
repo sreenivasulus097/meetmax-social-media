@@ -4,6 +4,7 @@ import { FaAt } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import { RiEyeOffLine } from "react-icons/ri";
 import LoginErrorMessage from "../utils/LoginErrorMessage";
+import Link from "next/link";
 
 const SignInForm = ({ errors, touched }) => {
   return (
@@ -56,9 +57,11 @@ const SignInForm = ({ errors, touched }) => {
 
           {/* Forgot Password */}
           <div className="inline-block">
-            <a className="text-blue-500 text-md inline-block">
-              Forgot Password?
-            </a>
+            <Link href="/auth/forgotpwd" passHref>
+              <a className="text-blue-500 text-md inline-block">
+                Forgot Password?
+              </a>
+            </Link>
           </div>
         </div>
         {/* SignIn Button */}
