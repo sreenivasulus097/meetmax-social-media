@@ -10,7 +10,8 @@ export default function Home() {
   useEffect(() => {
     if (!session) {
       console.log("session not ready", session);
-      push(`/auth/signin?callbackUrl=${asPath}`);
+      //  push(`/auth/signin?callbackUrl=${asPath}`);
+      push("/auth/signin");
     } else {
       console.log("session ready");
       router.push("/home");
