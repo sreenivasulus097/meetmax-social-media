@@ -8,6 +8,7 @@ import { Formik } from "formik";
 import { ValidationSchema } from "./ValidationSchema";
 import Layout from "../Layout";
 import SignUpForm from "../signup/SignUpForm";
+import Link from "next/link";
 
 const LoginLayout = ({ pgLabel, pageTitle }) => {
   const { t } = useTranslation();
@@ -78,9 +79,14 @@ const LoginLayout = ({ pgLabel, pageTitle }) => {
             <p className="text-md mr-5">
               {t(`login-page:footer_text_${pgLabel}`)}
             </p>
-            <a className="text-blue-500 text-md inline-block">
-              {t(`login-page:footer_link_label_${pgLabel}`)}
-            </a>
+            <Link
+              href={pgLabel === "signin" ? "/auth/signup" : "/auth/signin"}
+              passHref
+            >
+              <a className="text-blue-500 text-md inline-block">
+                {t(`login-page:footer_link_label_${pgLabel}`)}
+              </a>
+            </Link>
           </div>
         </div>
       </div>
