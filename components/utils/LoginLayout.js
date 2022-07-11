@@ -10,8 +10,9 @@ import Layout from "../Layout";
 import SignUpForm from "../signup/SignUpForm";
 import Link from "next/link";
 
-const LoginLayout = ({ pgLabel, pageTitle }) => {
+const LoginLayout = ({ pgLabel, pageTitle, providers }) => {
   const { t } = useTranslation();
+  console.log("providers", providers);
   return (
     <Layout pageTitle={pageTitle}>
       <div className="container ml-[10%] md:ml-0 flex flex-col text-center justify-center items-center min-h-screen ">
@@ -28,6 +29,8 @@ const LoginLayout = ({ pgLabel, pageTitle }) => {
             <SocialButton
               icon={<AiOutlineGoogle className="text-lg  ml-1 mr-2" />}
               label={t("login-page:login_google_label")}
+              providers={providers}
+              providerType="google"
             />
             <SocialButton
               icon={<DiApple className="text-xl  ml-1 mr-2" />}
