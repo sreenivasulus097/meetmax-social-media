@@ -8,6 +8,9 @@ function SocialButton({ icon, label, providers, providerType }) {
     if (providerType === "google") {
       signIn(providers.google.id, { callbackUrl: "/" });
     }
+    if (providerType === "apple") {
+      alert("This feature is currently not available.");
+    }
   };
   return (
     <button

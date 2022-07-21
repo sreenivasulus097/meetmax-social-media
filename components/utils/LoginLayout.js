@@ -37,6 +37,8 @@ const LoginLayout = ({ pgLabel, pageTitle, providers }) => {
             <SocialButton
               icon={<DiApple className="text-xl  ml-1 mr-2" />}
               label={t("login-page:login_apple_label")}
+              providers={providers}
+              providerType="apple"
             />
           </div>
           {/* OR */}

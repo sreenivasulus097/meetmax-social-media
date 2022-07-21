@@ -8,6 +8,7 @@ import * as fireStoreFunctions from "firebase/firestore";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getSession, signIn } from "next-auth/react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 export default NextAuth({
   session: {
@@ -23,14 +24,6 @@ export default NextAuth({
       // The name to display on the sign in form (e.g. "Sign in with...")
       id: "credentials",
       name: "Credentials",
-      // The credentials is used to generate a suitable form on the sign in page.
-      // You can specify whatever fields you are expecting to be submitted.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-      /* credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      }, */
       async authorize(credentials, req) {
         const email = credentials.email;
         const password = credentials.password;
@@ -61,8 +54,7 @@ export default NextAuth({
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
       if (account) {
-        token.accessToken = account.userId;
-        //account.access_token;
+        token.accessToken = account.access_token;
       }
 
       return token;
@@ -70,8 +62,18 @@ export default NextAuth({
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
       session.accessToken = token.accessToken;
-      session.user.tag = token;
-      //session.user.name = token.name;
+      // session.user.tag = token;
+
+      if (session.user?.email) {
+        const userRec = auth.currentUser;
+        //   session.user.tag = userRec;
+
+        const docRef = doc(db, "users", userRec.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          session.user.tag = docSnap.data();
+        }
+      }
       return session;
     },
   },
