@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import SignInForm from "../signin/SignInForm";
 import SocialButton from "./SocialButton";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { DiApple } from "react-icons/di";
-import { Formik } from "formik";
-import { ValidationSchema } from "./ValidationSchema";
 import Layout from "../Layout";
 import SignUpForm from "../signup/SignUpForm";
 import Link from "next/link";
 
 const LoginLayout = ({ pgLabel, pageTitle, providers }) => {
   const { t } = useTranslation();
+
   console.log("providers", providers);
+  // const { data: session, status } = useSession();
+  //const router = useRouter();
+
   return (
     <Layout pageTitle={pageTitle}>
       <div className="container ml-[10%] md:ml-0 flex flex-col text-center justify-center items-center min-h-screen ">
@@ -46,36 +48,7 @@ const LoginLayout = ({ pgLabel, pageTitle, providers }) => {
             </fieldset>
           </div>
           {/* INPUT Fields */}
-          {pgLabel === "signup" ? (
-            <Formik
-              initialValues={{
-                email: "",
-                name: "",
-                password: "",
-                dob: "",
-                gender: "",
-              }}
-              onSubmit={(values, { resetForm }) => {
-                console.log(value);
-                resetForm();
-              }}
-              validationSchema={ValidationSchema}
-              component={SignUpForm}
-            />
-          ) : (
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              onSubmit={(values, { resetForm }) => {
-                console.log(value);
-                resetForm();
-              }}
-              validationSchema={ValidationSchema}
-              component={SignInForm}
-            />
-          )}
+          {pgLabel === "signup" ? <SignUpForm /> : <SignInForm />}
 
           {/* Sign In */}
           <div className="flex justify-center mt-4">

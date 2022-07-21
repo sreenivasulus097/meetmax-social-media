@@ -10,6 +10,13 @@ export default function Home({ providers }) {
   const { data: session, status } = useSession();
   const { push, asPath } = useRouter();
   console.log("router", asPath);
+  console.log("status", status);
+  console.log("session in landing page", session);
+
+  /* session.accessToken = token.accessToken;
+      session.user.tag = token;
+      session.user.testDetail = user; */
+
   /* useEffect(() => {
     if (!session) {
       console.log("session not ready", session);
@@ -20,10 +27,12 @@ export default function Home({ providers }) {
       router.push("/home");
     }
   }, []); */
+  if (status === "loading") {
+    return <div>Loading..........</div>;
+  }
   if (!session)
     return (
       <>
-        <button onClick={() => signOut()}>signout</button>
         <LoginLayout
           pgLabel="signin"
           pageTitle="Social Media - Sign In"
@@ -32,8 +41,14 @@ export default function Home({ providers }) {
       </>
     );
   else return <Landing />;
-  console.log("session", session);
-  return <div className="">{!session ? <div>Loading..........</div> : ""}</div>;
+
+  {
+    /*return (
+    <div className="align-center">
+      {status === "loading" ? <div>Loading..........</div> : ()}
+    </div>
+  ); */
+  }
 }
 
 export async function getServerSideProps(context) {
