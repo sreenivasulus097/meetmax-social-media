@@ -40,7 +40,7 @@ export default function Home({ providers }) {
         />
       </>
     );
-  else return <Landing />;
+  else return <Landing user={session.user.tag.name} />;
 
   {
     /*return (
