@@ -8,8 +8,8 @@ import Landing from "../components/Landing";
 
 export default function Home({ providers }) {
   const { data: session, status } = useSession();
-  const { push, asPath } = useRouter();
-  console.log("router", asPath);
+  const router = useRouter();
+  //console.log("router", asPath);
   console.log("status", status);
   console.log("session in landing page", session);
 
@@ -32,15 +32,13 @@ export default function Home({ providers }) {
   }
   if (!session)
     return (
-      <>
-        <LoginLayout
-          pgLabel="signin"
-          pageTitle="Social Media - Sign In"
-          providers={providers}
-        />
-      </>
+      <LoginLayout
+        pgLabel="signin"
+        pageTitle="Social Media - Sign In"
+        providers={providers}
+      />
     );
-  else return <Landing user={session.user.tag.name} />;
+  else router.push("/home");
 
   {
     /*return (
