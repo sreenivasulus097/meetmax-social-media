@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { FirebaseAdapter } from "@next-auth/firebase-adapter";
+import { FirestoreAdapter } from "@next-auth/firebase-adapter";
 
 import { auth, db } from "../../../firebase.config";
 import * as fireStoreFunctions from "firebase/firestore";
@@ -46,9 +46,16 @@ export default NextAuth({
   pages: {
     // signIn: "/auth/sigin",
   },
-  adapter: FirebaseAdapter({
+  adapter: FirestoreAdapter({
     db: db,
     ...fireStoreFunctions,
+
+    apiKey: "AIzaSyA5AX1edtP_lGqcv_yFeoPL0XkIPpkbbJc",
+    authDomain: "meetmax-social-media.firebaseapp.com",
+    projectId: "meetmax-social-media",
+    storageBucket: "meetmax-social-media.appspot.com",
+    messagingSenderId: "766559029074",
+    appId: "1:766559029074:web:96188a4fc977d59e4e1c8b",
   }),
   callbacks: {
     async jwt({ token, account }) {
@@ -64,7 +71,8 @@ export default NextAuth({
       session.accessToken = token.accessToken;
       // session.user.tag = token;
 
-      if (session.user?.email) {
+      // if (session.user?.email) {
+      if (!session.user?.name) {
         const userRec = auth.currentUser;
         //   session.user.tag = userRec;
 

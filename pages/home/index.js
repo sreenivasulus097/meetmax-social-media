@@ -4,7 +4,6 @@ import { IoPeopleSharp, IoPersonOutline } from "react-icons/io5";
 import { TiMessages } from "react-icons/ti";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineExplore } from "react-icons/md";
-
 import { FiSettings } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { getProviders, getSession, useSession, signOut } from "next-auth/react";
@@ -54,8 +53,9 @@ const home = () => {
             </button>
           </div>
         </div>
-        <div className="w-7/12 bg-[#fafafb]">Posts</div>
-        <div className="w-3/12">Friends</div>
+        <div className="w-5/12 bg-[#fafafb] mx-1">Posts</div>
+        <div className="w-3/12 bg-[#fafafb] mx-1">Events</div>
+        <div className="w-2/12">Friends</div>
       </div>
     </Layout>
   );

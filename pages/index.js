@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import { getProviders, getSession, useSession, signOut } from "next-auth/react";
+import { getSession, useSession, signOut, getProviders } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import LoginLayout from "../components/utils/LoginLayout";
