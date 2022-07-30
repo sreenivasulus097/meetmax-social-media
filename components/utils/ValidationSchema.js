@@ -30,3 +30,9 @@ export const ValidationSchemaSignIn = Yup.object().shape({
       "Must contain 8 Chars(atleast one upper, lower, number and special chars)"
     ),
 });
+
+export const ValidationSchemaForgetPwd = Yup.object().shape({
+  email: Yup.string()
+    .required("Required")
+    .email("Please enter a valid email address")
+});
